@@ -86,11 +86,6 @@ public plugin_init()
 {
 	register_plugin(PLUGIN, VERSION, "Mario AR.");
 	
-	new month, junk;
-	date(junk, month, junk);
-	if (month >= 4)
-		return;
-	
 	new szBuffer[196], File, szMap[32], szOrigins[3][10], Float:origins[3];
 	
 	get_mapname(szMap, charsmax(szMap));
