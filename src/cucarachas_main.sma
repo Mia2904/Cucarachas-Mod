@@ -497,10 +497,10 @@ public fw_RoachThink(ent)
 
 public fw_RoachTouch(touched, toucher)
 {
-	if (!is_valid_ent(touched))
+	if (!(1 <= toucher <= 32) || !is_valid_ent(touched))
 		return PLUGIN_CONTINUE;
 	
-	if (g_canattack && entity_get_int(touched, EV_INT_iuser2) == -1 && is_user_alive(toucher))
+	if (g_canattack && !g_repel[toucher] && entity_get_int(touched, EV_INT_iuser2) == -1 && is_user_alive(toucher))
 	{
 		ExecuteHam(Ham_TakeDamage, toucher, touched, touched, DAMAGE(get_playersnum()), DMG_SLASH);
 		emit_sound(touched, CHAN_VOICE, SONIDO_ATTACK, 1.0, ATTN_NORM, 0, PITCH_NORM);
@@ -728,6 +728,9 @@ get_closest_player(ent)
 	for (new i = 0; i < num; i++)
 	{
 		player = players[i];
+
+		if (g_repel[player])
+			continue;
 		
 		dist = entity_range(player, ent);
 		
