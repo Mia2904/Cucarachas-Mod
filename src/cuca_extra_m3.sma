@@ -2,7 +2,7 @@
 
 #include <amxmodx>
 #include <cstrike>
-#include <cuca_mod>
+#include <cucarachas_mod>
 #include <fakemeta>
 #include <fun>
 #include <hamsandwich>
